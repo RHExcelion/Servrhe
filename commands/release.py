@@ -203,14 +203,14 @@ def command(guid, manager, irc, channel, user, show, previous = False, comment =
     info_link, download_link = yield manager.master.modules["nyaa"].upload(guid, torrent.encode("utf8"), comment)
     irc.notice(user, u"Uploaded to Nyaa")
 
--    # Step 8: Upload torrent link to TT
--    try:
--        manager.dispatch("update", guid, u"Uploading torrent to TT")
--        yield manager.master.modules["tt"].upload(download_link)
--    except:
--        irc.msg(channel, u"Couldn't upload to TT. Continuing to release {} regardless.".format(show.name.english))
--    else:
--        irc.notice(user, u"Uploaded to TT")
+    # Step 8: Upload torrent link to TT
+    try:
+        manager.dispatch("update", guid, u"Uploading torrent to TT")
+        yield manager.master.modules["tt"].upload(download_link)
+    except:
+        irc.msg(channel, u"Couldn't upload to TT. Continuing to release {} regardless.".format(show.name.english))
+    else:
+        irc.notice(user, u"Uploaded to TT")
 
 
 
